@@ -5,7 +5,7 @@ let boardHeight = 440;
 let context;
 
 //bird
-let birdWidth = 34; //width/height ratio = 408/228 = 17/12
+let birdWidth = 34;
 let birdHeight = 24;
 let birdX = boardWidth / 9;
 let birdY = 350;
@@ -25,7 +25,6 @@ let pipeHeight = 512;
 let pipeX = boardWidth;
 let pipeY = 0;
 
-let topPipeImg;
 let bottomPipeImg;
 
 //coin
@@ -33,6 +32,7 @@ let coinArray = [];
 let coinWidth = 64; //width/height ratio = 384/3072 = 1/8
 let coinHeight = 64; // i want to change the hight!
 let coinX = boardWidth / 2; // com puc canviar alsada
+let coinY = 0;
 
 let coinImg;
 
@@ -50,10 +50,6 @@ window.onload = function () {
   board.width = boardWidth;
   context = board.getContext("2d"); //used for drawing on the board
 
-  //draw flappy bird
-  // context.fillStyle = "green";
-  // context.fillRect(bird.x, bird.y, bird.width, bird.height);
-
   //load images
   birdImg = new Image();
   birdImg.src = "./images/flappybird.png";
@@ -61,14 +57,11 @@ window.onload = function () {
     context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
   };
 
-  topPipeImg = new Image();
-  topPipeImg.src = "./images/toppipe.pngtoppipe.png";
-
   bottomPipeImg = new Image();
-  bottomPipeImg.src = "./bottompipe.png";
+  bottomPipeImg.src = "./images/bottompipe.pngbottompipe.png";
 
   coinImg = new Image();
-  coinImg.src = "./5a39d716527a49.42077263151374005433784147.png";
+  coinImg.src = "./images/5a39d716527a49.42077263151374005433784147.png";
 
   //PA QUE ESTO
 
@@ -76,8 +69,8 @@ window.onload = function () {
 
   //Math.random() * (pipeHeight / 2)pipeHeight / 4 - Math.random()
 
-  setInterval(placePipes, 3000 - Math.random() * 800); //every 1.5 seconds
-  setInterval(placeCoin, 6000 - Math.random() * 300); //neeed to define placeCoin
+  setInterval(placePipes, Math.random() * window.innerWidth + "300"); //every 1.5 seconds
+  setInterval(placeCoin, 6000 - Math.random() * 3000); //neeed to define placeCoin
   document.addEventListener("keydown", moveBird);
 };
 
@@ -91,7 +84,9 @@ function update() {
   //bird
   velocityY += gravity;
   // bird.y += velocityY;
-  bird.y = Math.max(bird.y + velocityY, 0); //apply gravity to current bird.y, limit the bird.y to top of the canvas
+  bird.y = Math.max(bird.y + velocityY, 0);
+  //apply gravity to current bird.y, limit the bird.y to top of the canvas
+  // create a math max so te bird it can be "running"
   context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 
   if (bird.y > board.height) {
@@ -148,16 +143,6 @@ function placePipes() {
   // 1 -> -128 - 256 (pipeHeight/4 - pipeHeight/2) = -3/4 pipeHeight
   let randomPipeY = pipeY - pipeHeight / 4 - Math.random() * (pipeHeight / 2);
   let openingSpace = board.height / 2;
-
-  let topPipe = {
-    img: topPipeImg,
-    x: pipeX,
-    y: randomPipeY,
-    width: pipeWidth,
-    height: pipeHeight,
-    passed: false,
-  };
-  //  pipeArray.push(topPipe);
 
   let bottomPipe = {
     img: bottomPipeImg,
