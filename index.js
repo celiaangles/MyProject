@@ -7,7 +7,7 @@ import Score from "./Score.js";
 const canvas = document.getElementById("game"); // reference to canvas
 const ctx = canvas.getContext("2d"); // to draw the context here
 
-const GAME_SPEED_START = 1; // 1.0
+const GAME_SPEED_START = 0.8; // 1.0
 const GAME_SPEED_INCREMENT = 0.0001;
 
 const GAME_WIDTH = 600;
@@ -43,7 +43,7 @@ let score = null;
 let scaleRatio = null;
 let previousTime = null;
 let gameSpeed = GAME_SPEED_START;
-let gameOver = false;
+let gameOver = false; // creating game over
 let hasAddedEventListenersForRestart = false;
 let waitingToStart = true;
 
@@ -155,10 +155,10 @@ function getScaleRatio() {
 function showGameOver() {
   const fontSize = 70 * scaleRatio;
   ctx.font = `${fontSize}px Verdana`;
-  ctx.fillStyle = "grey";
+  ctx.fillStyle = "red";
   const x = canvas.width / 4.5;
   const y = canvas.height / 2;
-  ctx.fillText("GAME OVER", x, y);
+  ctx.fillText("TUT MIR LEID", x, y);
 }
 
 function setupGameReset() {
@@ -177,18 +177,19 @@ function reset() {
   gameOver = false;
   waitingToStart = false;
   ground.reset();
-  // cactiController.reset();
+  cactiController.reset();
+  elemController.reset(); //added new be careful
   score.reset();
   gameSpeed = GAME_SPEED_START;
 }
 
 function showStartGameText() {
-  const fontSize = 40 * scaleRatio;
+  const fontSize = 30 * scaleRatio;
   ctx.font = `${fontSize}px Verdana`;
-  ctx.fillStyle = "grey";
+  ctx.fillStyle = "blue";
   const x = canvas.width / 14;
   const y = canvas.height / 2;
-  ctx.fillText("Tap Screen or Press Space To Start", x, y);
+  ctx.fillText("What are u waiting for you idiot", x, y);
 }
 
 function updateGameSpeed(frameTimeDelta) {
@@ -216,22 +217,29 @@ function gameLoop(currentTime) {
     ground.update(gameSpeed, frameTimeDelta);
     cactiController.update(gameSpeed, frameTimeDelta);
     elemController.update(gameSpeed, frameTimeDelta);
-    //THE PROBLEM IS HERE
     player.update(gameSpeed, frameTimeDelta);
     score.update(frameTimeDelta);
     updateGameSpeed(frameTimeDelta);
   }
 
-  if (!gameOver && cactiController.collideWith(player)) {
+  if (
+    !gameOver &&
+    cactiController.collideWith(player)
+    //ACTIVATE THIS IF U WANT TO COLLIDE WITH COINS
+    //||
+    // (!gameOver && elemController.collideWith(player))
+  ) {
+    //here i am adding something new
     gameOver = true;
     setupGameReset();
     score.setHighScore();
   }
 
+  //When colliding with coin
+
   //Draw game objects
   ground.draw();
   cactiController.draw();
-  //THE PROBLEM IS HERE
   elemController.draw(); //disapearing other elements
   player.draw();
   score.draw();
