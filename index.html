@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" , content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dino Game</title>
     <style>
       * {
@@ -13,25 +14,29 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
         height: 100vh;
-
-        user-select: none;
-        touch-action: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-        outline: none;
       }
       canvas {
         border: 0.1px solid grey;
       }
+      a {
+        color: rgb(161, 157, 157);
+      }
+      .links {
+        margin-bottom: 20px;
+        font-weight: normal;
+        font-size: 1.2em;
+      }
+      .separator {
+        color: grey;
+      }
     </style>
-    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer type="module"></script>
   </head>
   <body>
-    <canvas id="game"></canvas>
 
-    <script src="script.js" defer type="module"></script>
+    </div>
+    <canvas id="game"></canvas>
   </body>
 </html>
