@@ -1,7 +1,7 @@
 import Player from "./Player.js";
 import Ground from "./Ground.js";
 import CactiController from "./CactiController.js";
-//import Coins from "./coin.js";
+import ElemController from "./elemController.js";
 import Score from "./Score.js";
 
 const canvas = document.getElementById("game"); // reference to canvas
@@ -23,20 +23,20 @@ const GROUND_AND_CACTUS_SPEED = 0.3;
 const CACTI_CONFIG = [
   { width: 48 / 0.8, height: 100 / 0.8, image: "images/cactus_1.png" },
   { width: 98 / 1.2, height: 100 / 1.2, image: "images/cactus_2.png" },
-  { width: 68 / 1.3, height: 70 / 1.3, image: "images/cactus_3.png" },
+  { width: 68 / 2, height: 70 / 2, image: "images/cactus_3.png" },
 ];
 
 //PLACE IMAGES FROM COINS
-const COIN_CONFIG = [
-  { width: 48 / 0.8, height: 100 / 0.8, image: "images/fckinshit.jpg" },
-  { width: 98 / 1.2, height: 100 / 1.2, image: "images/COIN02.png" },
+const ELEM_CONFIG = [
+  { width: 48 / 1.5, height: 100 / 1.5, image: "images/element_01.jpg" },
+  { width: 48 / 1.5, height: 100 / 1.5, image: "images/element_02.png" },
 ];
 
 //Game Objects
 let player = null;
 let ground = null;
 let cactiController = null;
-let coins = null;
+let elemController = null; //element
 let score = null;
 
 let scaleRatio = null;
@@ -72,28 +72,28 @@ function createSprites() {
     scaleRatio
   );
 
-  /*
-  //this is new
-  const coinImages = COIN_CONFIG.map((coins) =>{
-    const image = new Image ();
-    image.src = coin.image;
-    return{
-      image : image,
-      width: coin.width * scaleRatio,
-      height coin.height * scaleRatio,
-    }
-  })
+  //elements
 
-  //AIXO TAMBE ES NOU
-  coin = new coin(
+  const elemImages = ELEM_CONFIG.map((element) => {
+    const image = new Image();
+    image.src = element.image;
+    return {
+      image: image,
+      width: element.width * scaleRatio,
+      height: element.height * scaleRatio,
+    };
+  });
+
+  elemController = new ElemController(
     ctx,
-    coinImages,
+    elemImages,
     scaleRatio,
-    GROUND_AND_CACTUS_SPEED // AIXO SHA DE MODIFICAR
-  )
+    GROUND_AND_CACTUS_SPEED //must change
+  );
 
-  */
+  //THE PROBLEM IS HERE!
 
+  //cactuses
   const cactiImages = CACTI_CONFIG.map((cactus) => {
     const image = new Image();
     image.src = cactus.image;
@@ -212,6 +212,8 @@ function gameLoop(currentTime) {
     //Update game objects
     ground.update(gameSpeed, frameTimeDelta);
     cactiController.update(gameSpeed, frameTimeDelta);
+    elemController.update(gameSpeed, frameTimeDelta);
+    //THE PROBLEM IS HERE
     player.update(gameSpeed, frameTimeDelta);
     score.update(frameTimeDelta);
     updateGameSpeed(frameTimeDelta);
@@ -226,6 +228,8 @@ function gameLoop(currentTime) {
   //Draw game objects
   ground.draw();
   cactiController.draw();
+  //THE PROBLEM IS HERE
+  elemController.draw(); //disapearing other elements
   player.draw();
   score.draw();
 
