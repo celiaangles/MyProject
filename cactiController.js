@@ -1,15 +1,16 @@
 import Cactus from "./Cactus.js";
 
 export default class CactiController {
-  CACTUS_INTERVAL_MIN = 100;
-  CACTUS_INTERVAL_MAX = 2000;
+  CACTUS_INTERVAL_MIN = 500;
+  CACTUS_INTERVAL_MAX = 2000; //ammount of time where the cactus are created and then stored to adjudicated a random number
 
   //place the interval between the time the cactus are appearing
 
   nextCactusInterval = null;
-  cacti = []; //nose
+  cacti = [];
 
   constructor(ctx, cactiImages, scaleRatio, speed) {
+    //create a constructor
     this.ctx = ctx;
     this.canvas = ctx.canvas;
     this.cactiImages = cactiImages;
@@ -21,6 +22,7 @@ export default class CactiController {
 
   setNextCactusTime() {
     const num = this.getRandomNumber(
+      //indicate that i want a random number
       //set a random number that will act in between the interval max/min
       this.CACTUS_INTERVAL_MIN,
       this.CACTUS_INTERVAL_MAX
@@ -30,6 +32,7 @@ export default class CactiController {
   }
 
   getRandomNumber(min, max) {
+    // here the random number
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
@@ -53,6 +56,7 @@ export default class CactiController {
   update(gameSpeed, frameTimeDelta) {
     //setting the velocity of the cactus
     if (this.nextCactusInterval <= 0) {
+      // need to add a new cactus
       this.createCactus();
       this.setNextCactusTime();
     }

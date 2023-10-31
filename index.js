@@ -1,7 +1,7 @@
 import Player from "./Player.js";
 import Ground from "./Ground.js";
 import CactiController from "./CactiController.js";
-import ElemController from "./elemController.js";
+import ElemController from "./ElemController.js"; //link the java file with the instructions of element controller
 import Score from "./Score.js";
 
 const canvas = document.getElementById("game"); // reference to canvas
@@ -21,7 +21,8 @@ const GROUND_HEIGHT = 24;
 const GROUND_AND_CACTUS_SPEED = 0.3;
 
 const CACTI_CONFIG = [
-  { width: 48 / 0.8, height: 100 / 0.8, image: "images/cactus_1.png" },
+  // array of objects which will be the images that will appear
+  { width: 48 / 0.8, height: 100 / 0.8, image: "images/cactus_1.png" }, //set the siye and load the image linked
   { width: 98 / 1.2, height: 100 / 1.2, image: "images/cactus_2.png" },
   { width: 68 / 2, height: 70 / 2, image: "images/cactus_3.png" },
 ];
@@ -75,9 +76,11 @@ function createSprites() {
   //elements
 
   const elemImages = ELEM_CONFIG.map((element) => {
+    //iterate over every element from array
     const image = new Image();
     image.src = element.image;
     return {
+      // object that we are returning
       image: image,
       width: element.width * scaleRatio,
       height: element.height * scaleRatio,
@@ -93,7 +96,7 @@ function createSprites() {
 
   //THE PROBLEM IS HERE!
 
-  //cactuses
+  //load images
   const cactiImages = CACTI_CONFIG.map((cactus) => {
     const image = new Image();
     image.src = cactus.image;
@@ -104,7 +107,7 @@ function createSprites() {
     };
   });
 
-  cactiController = new CactiController(
+  cactiController = new CactiController( //call the cacti controller function
     ctx,
     cactiImages,
     scaleRatio,
@@ -174,7 +177,7 @@ function reset() {
   gameOver = false;
   waitingToStart = false;
   ground.reset();
-  cactiController.reset();
+  // cactiController.reset();
   score.reset();
   gameSpeed = GAME_SPEED_START;
 }
