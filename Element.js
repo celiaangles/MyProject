@@ -1,75 +1,18 @@
-import Coins from "./Cactus.js";
-
-export default class CactiController {
-  CACTUS_INTERVAL_MIN = 750;
-  CACTUS_INTERVAL_MAX = 1750;
-
-  nextCactusInterval = null;
-  cacti = [];
-
-  constructor(ctx, coinImages, scaleRatio, speed) {
+export default class Element {
+  constructor(ctx, x, y, width, height, image) {
     this.ctx = ctx;
-    this.canvas = ctx.canvas;
-    this.cactiImages = cactiImages;
-    this.scaleRatio = scaleRatio;
-    this.speed = speed;
-
-    this.setNextCactusTime();
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.image = image;
   }
 
-  setNextCactusTime() {
-    const num = this.getRandomNumber(
-      this.CACTUS_INTERVAL_MIN,
-      this.CACTUS_INTERVAL_MAX
-    );
-
-    this.nextCactusInterval = num;
-  }
-
-  getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-
-  createCactus() {
-    const index = this.getRandomNumber(0, this.cactiImages.length - 1);
-    const cactusImage = this.cactiImages[index];
-    const x = this.canvas.width * 1.5;
-    const y = this.canvas.height - cactusImage.height;
-    const cactus = new Cactus(
-      this.ctx,
-      x,
-      y,
-      cactusImage.width,
-      cactusImage.height,
-      cactusImage.image
-    );
-
-    this.cacti.push(cactus);
-  }
-
-  update(gameSpeed, frameTimeDelta) {
-    if (this.nextCactusInterval <= 0) {
-      this.createCactus();
-      this.setNextCactusTime();
-    }
-    this.nextCactusInterval -= frameTimeDelta;
-
-    this.cacti.forEach((cactus) => {
-      cactus.update(this.speed, gameSpeed, frameTimeDelta, this.scaleRatio);
-    });
-
-    this.cacti = this.cacti.filter((cactus) => cactus.x > -cactus.width);
+  update(speed, gameSpeed, frameTimeDelta, scaleRatio) {
+    this.x -= speed * gameSpeed * frameTimeDelta * scaleRatio;
   }
 
   draw() {
-    this.cacti.forEach((cactus) => cactus.draw());
-  }
-
-  collideWith(sprite) {
-    return this.cacti.some((cactus) => cactus.collideWith(sprite));
-  }
-
-  reset() {
-    this.cacti = [];
+    this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 }

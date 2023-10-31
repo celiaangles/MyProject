@@ -4,8 +4,10 @@ export default class CactiController {
   CACTUS_INTERVAL_MIN = 100;
   CACTUS_INTERVAL_MAX = 2000;
 
+  //place the interval between the time the cactus are appearing
+
   nextCactusInterval = null;
-  cacti = [];
+  cacti = []; //nose
 
   constructor(ctx, cactiImages, scaleRatio, speed) {
     this.ctx = ctx;
@@ -19,6 +21,7 @@ export default class CactiController {
 
   setNextCactusTime() {
     const num = this.getRandomNumber(
+      //set a random number that will act in between the interval max/min
       this.CACTUS_INTERVAL_MIN,
       this.CACTUS_INTERVAL_MAX
     );
@@ -31,10 +34,10 @@ export default class CactiController {
   }
 
   createCactus() {
-    const index = this.getRandomNumber(0, this.cactiImages.length - 1);
-    const cactusImage = this.cactiImages[index];
+    const index = this.getRandomNumber(0, this.cactiImages.length - 1); //it mix all the images about cactuses with the random  number previously created
+    const cactusImage = this.cactiImages[index]; // cactusImage will mean all the images of cactuses collected
     const x = this.canvas.width * 1.5;
-    const y = this.canvas.height - cactusImage.height;
+    const y = this.canvas.height - cactusImage.height; // space that the cactus are p
     const cactus = new Cactus(
       this.ctx,
       x,
@@ -44,10 +47,11 @@ export default class CactiController {
       cactusImage.image
     );
 
-    this.cacti.push(cactus);
+    this.cacti.push(cactus); // push images from the java file cactus
   }
 
   update(gameSpeed, frameTimeDelta) {
+    //setting the velocity of the cactus
     if (this.nextCactusInterval <= 0) {
       this.createCactus();
       this.setNextCactusTime();
@@ -55,10 +59,11 @@ export default class CactiController {
     this.nextCactusInterval -= frameTimeDelta;
 
     this.cacti.forEach((cactus) => {
+      // on every cactus element apply the following variables
       cactus.update(this.speed, gameSpeed, frameTimeDelta, this.scaleRatio);
     });
 
-    this.cacti = this.cacti.filter((cactus) => cactus.x > -cactus.width);
+    this.cacti = this.cacti.filter((cactus) => cactus.x > -cactus.width); //ni puta idea, esta filtrant algo
   }
 
   draw() {
@@ -66,10 +71,11 @@ export default class CactiController {
   }
 
   collideWith(sprite) {
+    // saying that it must collide using the fucnction created befpre
     return this.cacti.some((cactus) => cactus.collideWith(sprite));
   }
 
   reset() {
-    this.cacti = [];
+    this.cacti = []; // when reset turn the cactus into 0 array
   }
 }
