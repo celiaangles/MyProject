@@ -15,4 +15,19 @@ export default class Element {
   draw() {
     this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
+
+  collideWith(sprite) {
+    // create a new method that will program when i am collidding with thw elements
+    const adjustBy = 1.4;
+    if (
+      sprite.x < this.x + this.width / adjustBy &&
+      sprite.x + sprite.width / adjustBy > this.x &&
+      sprite.y < this.y + this.height / adjustBy &&
+      sprite.height + sprite.y / adjustBy > this.y
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
