@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Dino Game</title>
     <style>
       * {
@@ -24,7 +25,6 @@
         color: rgb(161, 157, 157);
       }
 
-
       .links {
         margin-bottom: 20px;
         font-weight: normal;
@@ -34,13 +34,18 @@
         color: grey;
       }
     </style>
+
     <script src="index.js" defer type="module"></script>
   </head>
-  <body>
- 
-  
 
+  <body>
+    <div id="intro-game">
+      <button id="start-button">
+        start game
+        <a href="/">Ohhh yeahhh</a>
+      </button>
     </div>
-    <canvas id="game"></canvas>
+    <div id="in-game"><canvas id="game"></canvas></div>
+    <div id="end-game"></div>
   </body>
 </html>

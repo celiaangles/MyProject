@@ -1,0 +1,9 @@
+#intro-game {
+  display: block;
+}
+#in-game {
+  display: none;
+}
+#end-game {
+  display: none;
+}
