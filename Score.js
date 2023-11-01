@@ -23,6 +23,10 @@ export default class Score {
 
   incrementScore() {
     this.score++;
+    if (this.score > 1) {
+      document.getElementById("in-game").style.display = "none";
+      document.getElementById("winner").style.display = "block";
+    }
   }
 
   //setHighScore() {

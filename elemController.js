@@ -8,7 +8,7 @@ export default class ElemController {
   elem = []; // INTERVAL FOR APPEARENCE
 
   ///ACHTUNG THIS IS NEW // MUST CHECK IF IT
-  ELEMENT_INTERVAL_MIN02 = 350;
+  ELEMENT_INTERVAL_MIN02 = 300;
   ELEMENT_INTERVAL_MAX02 = 200;
 
   nextElementInterval02 = null;
@@ -40,7 +40,6 @@ export default class ElemController {
       this.ELEMENT_INTERVAL_MIN02,
       this.ELEMENT_INTERVAL_MAX02
     );
-
     this.nextElementInterval02 = num;
   }
   //ACHTUNG THIS IS NEW
@@ -59,7 +58,9 @@ export default class ElemController {
     const index = this.getRandomNumber(0, this.elemImages.length - 1);
     const elementImages = this.elemImages[index];
     const x = this.canvas.width * 1.5;
-    const y = this.getRandomNumber02(25, 150);
+    //const y = this.getRandomNumber02(50, 150);
+    const y = this.canvas.height - this.getRandomNumber02(200, 250);
+    //this.getRandomNumber02(50, 150) // this.canvas.height - 200
     const element = new Element(
       this.ctx,
       x,

@@ -10,6 +10,9 @@ startGame();
 const gameIntro = document.getElementById("game-intro");
 //here i would like to de activate the id canvas
 
+//restartGame();
+//const endGame = document.getElementById("end-game");
+
 const canvas = document.getElementById("game"); // reference to canvas
 const ctx = canvas.getContext("2d"); // to draw the context here
 
@@ -164,12 +167,12 @@ function getScaleRatio() {
 //score trial
 
 function showGameOver() {
-  const fontSize = 70 * scaleRatio;
+  const fontSize = 20 * scaleRatio;
   ctx.font = `${fontSize}px Verdana`;
   ctx.fillStyle = "red";
-  const x = canvas.width / 4.5;
+  const x = canvas.width / 2.5;
   const y = canvas.height / 2;
-  ctx.fillText("TUT MIR LEID", x, y);
+  ctx.fillText("oh no! you lost!", x, y);
 }
 
 function setupGameReset() {
@@ -179,7 +182,7 @@ function setupGameReset() {
     setTimeout(() => {
       window.addEventListener("keyup", reset, { once: true });
       window.addEventListener("touchstart", reset, { once: true });
-    }, 1000);
+    }, 1000); //here link a new page
   }
 }
 
@@ -244,7 +247,9 @@ function gameLoop(currentTime) {
   ) {
     //here i am adding something new
     gameOver = true;
-    setupGameReset();
+    // const gameIntro = document.getElementById("game-intro");
+    setupGameReset(); //FOLLOW THIS!!!!
+
     //score.setHighScore();
   }
 
@@ -270,6 +275,9 @@ function gameLoop(currentTime) {
 
   if (gameOver) {
     showGameOver();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   }
 
   if (waitingToStart) {
