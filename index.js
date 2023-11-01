@@ -94,8 +94,6 @@ function createSprites() {
     GROUND_AND_CACTUS_SPEED //must change
   );
 
-  //THE PROBLEM IS HERE!
-
   //load images
   const cactiImages = CACTI_CONFIG.map((cactus) => {
     const image = new Image();
@@ -151,6 +149,11 @@ function getScaleRatio() {
     return screenHeight / GAME_HEIGHT;
   }
 }
+
+//score trial
+//const scoresElement = document.getElementById("scores");
+//let scores = 0;
+//score trial
 
 function showGameOver() {
   const fontSize = 70 * scaleRatio;
@@ -210,6 +213,8 @@ function gameLoop(currentTime) {
   const frameTimeDelta = currentTime - previousTime;
   previousTime = currentTime;
 
+  //frame time delta here
+
   clearScreen();
 
   if (!gameOver && !waitingToStart) {
@@ -218,7 +223,7 @@ function gameLoop(currentTime) {
     cactiController.update(gameSpeed, frameTimeDelta);
     elemController.update(gameSpeed, frameTimeDelta);
     player.update(gameSpeed, frameTimeDelta);
-    score.update(frameTimeDelta);
+    //score.update(frameTimeDelta);
     updateGameSpeed(frameTimeDelta);
   }
 
@@ -232,10 +237,21 @@ function gameLoop(currentTime) {
     //here i am adding something new
     gameOver = true;
     setupGameReset();
-    score.setHighScore();
+    //score.setHighScore();
   }
 
-  //When colliding with coin
+  //UPDTING SCORE
+
+  //i am activating a collision with coins but i dont know hot to connect with
+  if (!gameOver && elemController.collideWith(player)) {
+    gameOver = false;
+    console.log("collision");
+    score.incrementScore();
+    //HERE I SHOULD CALL THE SCORE CLASS
+    //setupGameReset();
+    //wrong way to connect score
+    // HERE IS THE PROBLEM
+  }
 
   //Draw game objects
   ground.draw();
