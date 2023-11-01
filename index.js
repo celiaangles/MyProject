@@ -3,6 +3,12 @@ import Ground from "./Ground.js";
 import CactiController from "./CactiController.js";
 import ElemController from "./ElemController.js"; //link the java file with the instructions of element controller
 import Score from "./Score.js";
+import startGame from "./start.js";
+//link the new page
+
+startGame();
+const gameIntro = document.getElementById("game-intro");
+//here i would like to de activate the id canvas
 
 const canvas = document.getElementById("game"); // reference to canvas
 const ctx = canvas.getContext("2d"); // to draw the context here
@@ -121,6 +127,8 @@ function setScreen() {
   canvas.height = GAME_HEIGHT * scaleRatio;
   createSprites();
 }
+
+//how to start the game
 
 setScreen();
 //Use setTimeout on Safari mobile rotation otherwise works fine on desktop
