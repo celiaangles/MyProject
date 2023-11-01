@@ -7,3 +7,5 @@ export default function restartGame() {
       document.getElementById("end-game").style.display = "block";
     });
 }
+
+//i think whis page is useless

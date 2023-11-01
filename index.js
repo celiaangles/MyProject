@@ -3,11 +3,12 @@ import Ground from "./Ground.js";
 import CactiController from "./CactiController.js";
 import ElemController from "./ElemController.js"; //link the java file with the instructions of element controller
 import Score from "./Score.js";
-import startGame from "./start.js";
+import startGame from "./start.js"; //start game js file connected JENIFFER
+import winner from "./winner.js";
 //link the new page
 
 startGame();
-const gameIntro = document.getElementById("game-intro");
+const gameIntro = document.getElementById("game-intro"); //JENIFFER
 //here i would like to de activate the id canvas
 
 //restartGame();
@@ -172,7 +173,7 @@ function showGameOver() {
   ctx.fillStyle = "red";
   const x = canvas.width / 2.5;
   const y = canvas.height / 2;
-  ctx.fillText("oh no! you lost!", x, y);
+  ctx.fillText("press space to restart the game", x, y);
 }
 
 function setupGameReset() {
@@ -182,9 +183,14 @@ function setupGameReset() {
     setTimeout(() => {
       window.addEventListener("keyup", reset, { once: true });
       window.addEventListener("touchstart", reset, { once: true });
-    }, 1000); //here link a new page
+    }, 1000); // SANDRA
+    //i want to show an image or a message, dont know how
   }
 }
+
+//MODIFY THIS AFTER THE BREAK
+//ERASE TIMMER FROM WINNER PAGE
+// SEARCH FOR IT
 
 function reset() {
   hasAddedEventListenersForRestart = false;
@@ -253,7 +259,8 @@ function gameLoop(currentTime) {
     //score.setHighScore();
   }
 
-  //UPDTING SCORE
+  //let die = !gameOver && cactiController.collideWith(player);
+  //new constant
 
   //i am activating a collision with coins but i dont know hot to connect with
   if (!gameOver && elemController.collideWith(player)) {
@@ -266,6 +273,17 @@ function gameLoop(currentTime) {
     // HERE IS THE PROBLEM
   }
 
+  //conditioning when is not game over MARINA
+
+  //i want to deactivate the delay of the game over
+
+  //if (this.score > 1) {
+  // showGameOver();
+  //setTimeout(() => {
+  //  window.location.reload();
+  // }, 10000);
+  // }
+
   //Draw game objects
   ground.draw();
   cactiController.draw();
@@ -273,12 +291,12 @@ function gameLoop(currentTime) {
   player.draw();
   score.draw();
 
-  if (gameOver) {
-    showGameOver();
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
-  }
+  //if (gameOver) {
+  // showGameOver();
+  //setTimeout(() => {
+  // window.location.reload();
+  //}, 5000); ///why is getting activated after SANDRA addevent listener key up
+  // }
 
   if (waitingToStart) {
     showStartGameText();

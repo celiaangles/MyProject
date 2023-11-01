@@ -23,9 +23,12 @@ export default class Score {
 
   incrementScore() {
     this.score++;
-    if (this.score > 1) {
+    if (this.score > 0) {
       document.getElementById("in-game").style.display = "none";
+      document.getElementById("intro-game").style.display = "none";
       document.getElementById("winner").style.display = "block";
+
+      //THE PROBLEM IS THAT THIS IS INVOKING GAME OVER, FOR INSTANCE ACTIVATE THE 5000 RESTART
     }
   }
 
