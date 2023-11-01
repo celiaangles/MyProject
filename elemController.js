@@ -7,7 +7,7 @@ export default class ElemController {
   nextElementInterval = null;
   elem = []; // INTERVAL FOR APPEARENCE
 
-  ///ACHTUNG THIS IS NEW
+  ///ACHTUNG THIS IS NEW // MUST CHECK IF IT
   ELEMENT_INTERVAL_MIN02 = 350;
   ELEMENT_INTERVAL_MAX02 = 200;
 
@@ -91,10 +91,21 @@ export default class ElemController {
 
   collideWith(sprite) {
     // saying that it must collide using the fucnction created befpre
-    return this.elem.some((element) => element.collideWith(sprite));
+    if (this.elem.some((element) => element.collideWith(sprite))) {
+      this.elem.splice(0, 1);
+      return true;
+    }
+    return false;
+    // return this.elem.some((element) => element.collideWith(sprite));
   }
 
   reset() {
     this.elem = []; // when reset turn the cactus into 0 array
   } // MAYBE CHANGE THIS WHEN COLLIDE
+
+  // removeCoin(sprite) {
+  //   if (this.elem.some((element) => element.collideWith(sprite))) {
+  //     this.elem.splice(this.elem.indexOf(sprite), 1);
+  //   }
+  // }
 }

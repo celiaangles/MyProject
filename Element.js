@@ -18,16 +18,23 @@ export default class Element {
 
   collideWith(sprite) {
     // create a new method that will program when i am collidding with thw elements
-    const adjustBy = 1.4;
+    const adjustBy = 1.4; // programs when is colliding
     if (
       sprite.x < this.x + this.width / adjustBy &&
       sprite.x + sprite.width / adjustBy > this.x &&
       sprite.y < this.y + this.height / adjustBy &&
       sprite.height + sprite.y / adjustBy > this.y
     ) {
+      // score += 10; // Increase the score
+      // scoreElement.textContent = score;
       return true;
     } else {
       return false;
     }
   }
 }
+
+// update score
+// if (collideWith === true) {
+// score ++
+//}
