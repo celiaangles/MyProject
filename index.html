@@ -5,53 +5,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Dino Game</title>
-    <style>
-      * {
-        padding: 0px;
-        margin: 0px;
-      }
-      body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        height: 100vh;
-      }
-      canvas {
-        border: 0.1px solid grey;
-      }
-      a {
-        color: rgb(161, 157, 157);
-      }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@700&family=Passero+One&family=Rubik&display=swap"
+      rel="stylesheet"
+    />
 
-      .links {
-        margin-bottom: 20px;
-        font-weight: normal;
-        font-size: 1.2em;
-      }
-      .separator {
-        color: grey;
-      }
-    </style>
+    <title>Katana</title>
 
     <script src="index.js" defer type="module"></script>
   </head>
 
   <body>
     <div id="intro-game">
-      <button id="start-button">
-        start game
-        <a href="/"></a>
-      </button>
+      <div class="firstcon">
+        <h1 class="katana">Katana Game</h1>
+        <div class="textos">
+          <div class="text01">
+            <h2 class="subtext">Indira Paganotto</h2>
+            <h2 class="subtext">prod. Celia Angles</h2>
+          </div>
+          <div class="text02">
+            <h2 class="subtext">Iron Hack Test</h2>
+            <h2 class="subtext">DOM domination</h2>
+          </div>
+        </div>
+        <div class="container">
+          <button id="start-button">
+            START THE GAME
+            <a href="/"></a>
+          </button>
+        </div>
+      </div>
     </div>
+
     <div id="in-game"><canvas id="game"></canvas></div>
 
     <div id="winner">
-      <button id="restart-button">
-        restart game
-        <a href="/"></a></button
-      >congratulatioins you won!
+      <div class="secondcon">
+        <img
+          src="images/11310 Background Removed.png"
+          class="samurai"
+          alt="winnerImage"
+        />
+        <h1 class="pass">Congratulations, you have won!</h1>
+        <button id="restart-button">
+          COME BACK, PLAY AGAIN
+          <a href="/"></a>
+        </button>
+        <div class="images">
+          <img src="images/sword01.png" class="sword" alt="SAO" />
+          <img src="images/sword01.png" class="sword" alt="SAO" />
+          <img src="images/sword01.png" class="sword" alt="SAO" />
+          <img src="images/sword01.png" class="sword" alt="SAO" />
+          <img src="images/sword01.png" class="sword" alt="SAO" />
+        </div>
+      </div>
     </div>
   </body>
 </html>

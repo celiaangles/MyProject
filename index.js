@@ -17,7 +17,9 @@ const gameIntro = document.getElementById("game-intro"); //JENIFFER
 //const endGame = document.getElementById("end-game");
 
 const canvas = document.getElementById("game"); // reference to canvas
-const ctx = canvas.getContext("2d"); // to draw the context here
+const ctx = canvas.getContext("2d");
+
+// to draw the context here
 
 const GAME_SPEED_START = 0.8; // 1.0
 const GAME_SPEED_INCREMENT = 0.0001;
