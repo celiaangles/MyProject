@@ -42,6 +42,7 @@ canvas {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin-top: 4em;
 }
 
 .secondcon {
@@ -63,6 +64,7 @@ canvas {
   justify-content: space-between;
   margin: 50px;
   align-items: center;
+  width: 800px;
 }
 
 .subtext {
@@ -90,13 +92,23 @@ canvas {
   align-items: center;
 }
 
-.text01 {
+.credits {
+  font-family: "Bebas Neue", sans-serif;
+  color: #df1726;
+  font-size: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
   margin: 30px;
 }
 
+.text01 {
+  text-align: left;
+  margin: 15px 0 15px 0;
+}
+
 .text02 {
-  margin: 30px;
-  align-items: flex-end;
+  text-align: right;
+  margin: 15px 0 15px 0;
 }
 
 .katana {
@@ -123,7 +135,7 @@ canvas {
     237,
     237
   ); /* Adjust the size behavior as needed (e.g., 'contain', 'auto', '100% 100%', etc.) */
-  margin-top: -30px;
+  margin-top: -50px;
   font-weight: 400;
 }
 

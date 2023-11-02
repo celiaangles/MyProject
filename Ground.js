@@ -11,7 +11,7 @@ export default class Ground {
     this.y = this.canvas.height - this.height;
 
     this.groundImage = new Image();
-    this.groundImage.src = "images/ground.png";
+    this.groundImage.src = "images/grass.png";
   }
 
   update(gameSpeed, frameTimeDelta) {
@@ -22,6 +22,14 @@ export default class Ground {
     this.ctx.drawImage(
       this.groundImage,
       this.x,
+      this.y,
+      this.width,
+      this.height
+    );
+
+    this.ctx.drawImage(
+      this.groundImage,
+      this.x + this.width,
       this.y,
       this.width,
       this.height

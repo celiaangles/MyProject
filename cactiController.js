@@ -1,8 +1,8 @@
 import Cactus from "./Cactus.js";
 
 export default class CactiController {
-  CACTUS_INTERVAL_MIN = 500;
-  CACTUS_INTERVAL_MAX = 2000; //ammount of time where the cactus are created and then stored to adjudicated a random number
+  CACTUS_INTERVAL_MIN = 700;
+  CACTUS_INTERVAL_MAX = 3000; //ammount of time where the cactus are created and then stored to adjudicated a random number
 
   //place the interval between the time the cactus are appearing
 
