@@ -5,6 +5,8 @@ import ElemController from "./ElemController.js"; //link the java file with the 
 import Score from "./Score.js";
 import startGame from "./start.js"; //start game js file connected JENIFFER
 import winner from "./winner.js";
+
+winner();
 //link the new page
 
 startGame();
@@ -56,6 +58,7 @@ let gameSpeed = GAME_SPEED_START;
 let gameOver = false; // creating game over
 let hasAddedEventListenersForRestart = false;
 let waitingToStart = true;
+let waitingTotReset = false;
 
 function createSprites() {
   const playerWidthInGame = PLAYER_WIDTH * scaleRatio;
@@ -196,6 +199,7 @@ function reset() {
   hasAddedEventListenersForRestart = false;
   gameOver = false;
   waitingToStart = false;
+  waitingTotReset = false;
   ground.reset();
   cactiController.reset();
   elemController.reset(); //added new be careful
@@ -210,6 +214,17 @@ function showStartGameText() {
   const x = canvas.width / 14;
   const y = canvas.height / 2;
   ctx.fillText("What are u waiting for you idiot", x, y);
+}
+
+//SHOW END GAME TEXT
+
+function showEndGameText() {
+  const fontSize = 30 * scaleRatio;
+  ctx.font = `${fontSize}px Verdana`;
+  ctx.fillStyle = "red";
+  const x = canvas.width / 14;
+  const y = canvas.height / 2;
+  ctx.fillText("Oh you should reset", x, y);
 }
 
 function updateGameSpeed(frameTimeDelta) {
@@ -251,10 +266,14 @@ function gameLoop(currentTime) {
     //||
     // (!gameOver && elemController.collideWith(player))
   ) {
+    waitingTotReset = true;
+    console.log("collision"); //OLIVIA
+
     //here i am adding something new
     gameOver = true;
     // const gameIntro = document.getElementById("game-intro");
-    setupGameReset(); //FOLLOW THIS!!!!
+    setupGameReset();
+    //FOLLOW THIS!!!!
 
     //score.setHighScore();
   }
@@ -265,7 +284,7 @@ function gameLoop(currentTime) {
   //i am activating a collision with coins but i dont know hot to connect with
   if (!gameOver && elemController.collideWith(player)) {
     gameOver = false;
-    console.log("collision");
+    console.log("collision"); //OLIVIA
     score.incrementScore();
     //HERE I SHOULD CALL THE SCORE CLASS
     //setupGameReset();
@@ -300,6 +319,10 @@ function gameLoop(currentTime) {
 
   if (waitingToStart) {
     showStartGameText();
+  }
+
+  if (waitingTotReset) {
+    showEndGameText();
   }
 
   requestAnimationFrame(gameLoop);
