@@ -21,8 +21,8 @@ const ctx = canvas.getContext("2d");
 
 // to draw the context here
 
-const GAME_SPEED_START = 0.8; // 1.0
-const GAME_SPEED_INCREMENT = 0.0001;
+const GAME_SPEED_START = 0.75; // 1.0
+const GAME_SPEED_INCREMENT = 0.00001;
 
 const GAME_WIDTH = 600;
 const GAME_HEIGHT = 300; // ORIGINAL NUMBER WAS 200 (when i changed the obstacles changed as well)
@@ -30,21 +30,23 @@ const PLAYER_WIDTH = 88 / 1.2;
 const PLAYER_HEIGHT = 94 / 1.2;
 const MAX_JUMP_HEIGHT = GAME_HEIGHT / 1.2;
 const MIN_JUMP_HEIGHT = GAME_HEIGHT / 2;
-const GROUND_WIDTH = 2400;
-const GROUND_HEIGHT = 24;
+const GROUND_WIDTH = 570;
+const GROUND_HEIGHT = 60;
 const GROUND_AND_CACTUS_SPEED = 0.3;
 
 const CACTI_CONFIG = [
   // array of objects which will be the images that will appear
-  { width: 48 / 0.8, height: 100 / 0.8, image: "images/cactus_1.png" }, //set the siye and load the image linked
-  { width: 98 / 1.2, height: 100 / 1.2, image: "images/cactus_2.png" },
-  { width: 68 / 2, height: 70 / 2, image: "images/cactus_3.png" },
+  { width: 100 / 1, height: 100 / 1, image: "images/sakura.png" }, //set the siye and load the image linked
+  { width: 150 / 1.5, height: 120 / 1.5, image: "images/japan.png" },
 ];
 
 //PLACE IMAGES FROM COINS
 const ELEM_CONFIG = [
-  { width: 48 / 1.5, height: 100 / 1.5, image: "images/element_01.jpg" },
-  { width: 48 / 1.5, height: 100 / 1.5, image: "images/element_02.png" },
+  {
+    width: 100 / 1.5,
+    height: 100 / 1.5,
+    image: "images/sword Background Removed.png",
+  },
 ];
 
 //Game Objects
@@ -173,7 +175,12 @@ function getScaleRatio() {
 //score trial
 
 function showGameOver() {
-  const fontSize = 20 * scaleRatio;
+  //  font-family: "Bebas Neue", sans-serif;
+  //color: #df1726;
+  //font-size: 4em;
+  //text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+  const fontSize = 30 * scaleRatio;
   ctx.font = `${fontSize}px Verdana`;
   ctx.fillStyle = "red";
   const x = canvas.width / 2.5;
@@ -210,23 +217,23 @@ function reset() {
 }
 
 function showStartGameText() {
-  const fontSize = 30 * scaleRatio;
-  ctx.font = `${fontSize}px Verdana`;
-  ctx.fillStyle = "blue";
-  const x = canvas.width / 14;
-  const y = canvas.height / 2;
-  ctx.fillText("What are u waiting for you idiot", x, y);
+  const fontSize = 30;
+  ctx.font = `${fontSize}px  Bebas Neue`;
+  ctx.fillStyle = "red";
+  const x = canvas.width - 240;
+  const y = canvas.height / 7;
+  ctx.fillText("PRESS SPACE TO START", x, y);
 }
 
 //SHOW END GAME TEXT
 
 function showEndGameText() {
-  const fontSize = 30 * scaleRatio;
-  ctx.font = `${fontSize}px Verdana`;
+  const fontSize = 30;
+  ctx.font = `${fontSize}px  Bebas Neue`;
   ctx.fillStyle = "red";
-  const x = canvas.width / 14;
-  const y = canvas.height / 2;
-  ctx.fillText("Oh you should reset", x, y);
+  const x = canvas.width - 260;
+  const y = canvas.height / 7;
+  ctx.fillText("PRESS SPACE TO RESTART", x, y);
 }
 
 function updateGameSpeed(frameTimeDelta) {
@@ -234,7 +241,7 @@ function updateGameSpeed(frameTimeDelta) {
 }
 
 function clearScreen() {
-  ctx.fillStyle = "aquamarine";
+  ctx.fillStyle = "white";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 

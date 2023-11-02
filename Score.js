@@ -43,17 +43,25 @@ export default class Score {
     //const highScore = Number(localStorage.getItem(this.HIGH_SCORE_KEY));
     const y = 40 * this.scaleRatio;
 
-    const fontSize = 20 * this.scaleRatio;
+    const fontSize = 30;
     this.ctx.font = `${fontSize}px serif`;
 
-    this.ctx.fillStyle = "#525250";
-    const scoreX = this.canvas.width - 580 * this.scaleRatio;
+    this.ctx.fillStyle = "#df1726"; //JULIA
+    const scoreX = this.canvas.width - 585 * this.scaleRatio;
+    this.ctx.font = `${fontSize}px  Bebas Neue`;
     //const highScoreX = scoreX - 125 * this.scaleRatio;
 
-    const scorePadded = Math.floor(this.score).toString().padStart(2, 0);
+    const scorePadded = Math.floor(this.score).toString().padStart(1, 2);
     //const highScorePadded = highScore.toString().padStart(6, 0);
 
     this.ctx.fillText(`${scorePadded} KATANA`, scoreX, y);
     //this.ctx.fillText(`HI ${highScorePadded}`, highScoreX, y);
+
+    //const fontSize = 30;
+    //ctx.font = `${fontSize}px  Bebas Neue`;
+    //ctx.fillStyle = "red";
+    //const x = canvas.width - 260;
+    //const y = canvas.height / 7;
+    //ctx.fillText("PRESS SPACE TO RESTART", x, y);
   }
 }
