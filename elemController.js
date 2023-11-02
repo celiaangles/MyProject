@@ -59,7 +59,7 @@ export default class ElemController {
     const elementImages = this.elemImages[index];
     const x = this.canvas.width * 1.5;
     //const y = this.getRandomNumber02(50, 150);
-    const y = this.canvas.height - this.getRandomNumber02(200, 250);
+    const y = this.canvas.height - this.getRandomNumber02(270, 350);
     //this.getRandomNumber02(50, 150) // this.canvas.height - 200
     const element = new Element(
       this.ctx,
