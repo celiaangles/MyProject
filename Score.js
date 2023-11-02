@@ -23,7 +23,7 @@ export default class Score {
 
   incrementScore() {
     this.score++;
-    if (this.score > 0) {
+    if (this.score > 2) {
       document.getElementById("in-game").style.display = "none";
       document.getElementById("intro-game").style.display = "none";
       document.getElementById("winner").style.display = "block";
@@ -45,6 +45,7 @@ export default class Score {
 
     const fontSize = 20 * this.scaleRatio;
     this.ctx.font = `${fontSize}px serif`;
+
     this.ctx.fillStyle = "#525250";
     const scoreX = this.canvas.width - 580 * this.scaleRatio;
     //const highScoreX = scoreX - 125 * this.scaleRatio;

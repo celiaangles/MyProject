@@ -7,3 +7,169 @@
 #winner {
   display: none;
 }
+
+body {
+  font-family: "Rubik", sans-serif;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+  height: 100vh;
+
+  background-image: url("images/dramatic-black-white-waves-landscape.jpg");
+  filter: blur(70%);
+  background-size: cover; /* Adjust the size behavior as needed (e.g., 'contain', 'auto', '100% 100%', etc.) */
+  background-position: center;
+}
+canvas {
+  border: none;
+}
+
+.links {
+  margin-bottom: 20px;
+  font-weight: normal;
+  font-size: 1.2em;
+}
+
+.firstcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.secondcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5em;
+  margin-right: 5em;
+}
+
+.textos {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px;
+  align-items: center;
+}
+
+.subtext {
+  font-family: "Bebas Neue", sans-serif;
+  color: #df1726;
+  font-size: 4em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  align-items: center;
+}
+
+.pass {
+  font-family: "Bebas Neue", sans-serif;
+  color: #df1726;
+  font-size: 4em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  align-items: center;
+  font-stretch: expanded;
+}
+
+.subtext {
+  font-family: "Bebas Neue", sans-serif;
+  color: #df1726;
+  font-size: 4em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  align-items: center;
+}
+
+.text01 {
+  margin: 30px;
+}
+
+.text02 {
+  margin: 30px;
+  align-items: flex-end;
+}
+
+.katana {
+  font-family: "Bebas Neue", sans-serif;
+  color: #df1726;
+  font-size: 12em;
+  transform: scaleY(1.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: -70px;
+}
+
+#start-button {
+  width: 800px; /* Set the desired width in pixels or any other appropriate unit */
+  height: 70px;
+
+  font-size: 30px;
+  font-family: "Bebas Neue", sans-serif;
+  border-radius: 10px;
+  border-style: none;
+  color: #df1726;
+
+  background-color: rgb(
+    237,
+    237,
+    237
+  ); /* Adjust the size behavior as needed (e.g., 'contain', 'auto', '100% 100%', etc.) */
+  margin-top: -30px;
+  font-weight: 400;
+}
+
+#restart-button {
+  width: 690px; /* Set the desired width in pixels or any other appropriate unit */
+  height: 70px;
+
+  font-size: 30px;
+  font-family: "Bebas Neue", sans-serif;
+  border-radius: 10px;
+  border-style: none;
+  color: #df1726;
+  margin: 10px;
+
+  background-color: rgb(
+    237,
+    237,
+    237
+  ); /* Adjust the size behavior as needed (e.g., 'contain', 'auto', '100% 100%', etc.) */
+
+  font-weight: 400;
+}
+
+#winner {
+  align-items: center;
+}
+
+.images {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.sword {
+  width: 110px;
+  height: 110px;
+  padding: 5px;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+.samurai {
+  width: 420px;
+  height: 420px;
+  padding: 5px;
+  margin-left: 7px;
+  margin-right: 7px;
+}

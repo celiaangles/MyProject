@@ -50,7 +50,7 @@ export default class ElemController {
 
   //ACHTUNG THIS IS NEW
   getRandomNumber02(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    return Math.floor(Math.random() * (max - min + 1) + min); // i should add here the scale ratio
   }
   //ACHTUNG THIS IS NEW
 
@@ -59,7 +59,9 @@ export default class ElemController {
     const elementImages = this.elemImages[index];
     const x = this.canvas.width * 1.5;
     //const y = this.getRandomNumber02(50, 150);
-    const y = this.canvas.height - this.getRandomNumber02(270, 350);
+    const y =
+      this.canvas.height -
+      this.getRandomNumber02(this.canvas.height / 1.5, this.canvas.height);
     //this.getRandomNumber02(50, 150) // this.canvas.height - 200
     const element = new Element(
       this.ctx,
