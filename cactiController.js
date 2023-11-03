@@ -1,16 +1,16 @@
+//IMPORTING THE CACTUS JS
 import Cactus from "./Cactus.js";
 
+//DEFINE THE OBSTACLE SETTINGS
 export default class CactiController {
+  //INTERVAL WHERE THE CACTUS WILL BE LOADED RANDOMLY AND CALLING THE OBSTACLES EMPTY ARRAY
   CACTUS_INTERVAL_MIN = 700;
-  CACTUS_INTERVAL_MAX = 3000; //ammount of time where the cactus are created and then stored to adjudicated a random number
-
-  //place the interval between the time the cactus are appearing
-
+  CACTUS_INTERVAL_MAX = 3000;
   nextCactusInterval = null;
   cacti = [];
 
+  //CREATE CONSTRUCTOR WITH THE SETTINGS THE ARRAY OF OBSTACLES WILL HAVE
   constructor(ctx, cactiImages, scaleRatio, speed) {
-    //create a constructor
     this.ctx = ctx;
     this.canvas = ctx.canvas;
     this.cactiImages = cactiImages;
@@ -20,27 +20,26 @@ export default class CactiController {
     this.setNextCactusTime();
   }
 
+  //SETTING THE TIME THE NEXT CACTUS WILL APPEAR USING THE RANDOM NUMBER
   setNextCactusTime() {
     const num = this.getRandomNumber(
-      //indicate that i want a random number
-      //set a random number that will act in between the interval max/min
       this.CACTUS_INTERVAL_MIN,
       this.CACTUS_INTERVAL_MAX
     );
-
     this.nextCactusInterval = num;
   }
 
+  //CREATING THE RANDOM NUMBER FUNCTION
   getRandomNumber(min, max) {
-    // here the random number
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  //CREATING A FUNCTION THAT GENERATE THE OBSTACLES
   createCactus() {
-    const index = this.getRandomNumber(0, this.cactiImages.length - 1); //it mix all the images about cactuses with the random  number previously created
-    const cactusImage = this.cactiImages[index]; // cactusImage will mean all the images of cactuses collected
+    const index = this.getRandomNumber(0, this.cactiImages.length - 1);
+    const cactusImage = this.cactiImages[index];
     const x = this.canvas.width * 1.5;
-    const y = this.canvas.height - cactusImage.height; // space that the cactus are p
+    const y = this.canvas.height - cactusImage.height;
     const cactus = new Cactus(
       this.ctx,
       x,
@@ -50,36 +49,35 @@ export default class CactiController {
       cactusImage.image
     );
 
-    this.cacti.push(cactus); // push images from the java file cactus
+    this.cacti.push(cactus);
   }
 
+  //UPDATING THE OBSTACLES WITH THE FOLLOWING SETTINGS
   update(gameSpeed, frameTimeDelta) {
-    //setting the velocity of the cactus
     if (this.nextCactusInterval <= 0) {
-      // need to add a new cactus
       this.createCactus();
       this.setNextCactusTime();
     }
     this.nextCactusInterval -= frameTimeDelta;
-
     this.cacti.forEach((cactus) => {
-      // on every cactus element apply the following variables
       cactus.update(this.speed, gameSpeed, frameTimeDelta, this.scaleRatio);
     });
 
     this.cacti = this.cacti.filter((cactus) => cactus.x > -cactus.width); //ni puta idea, esta filtrant algo
   }
 
+  //DRAWING EVERY OBSTACLE FROM THE ARRAY TO SCREEN
   draw() {
     this.cacti.forEach((cactus) => cactus.draw());
   }
 
+  //IF OBSTACLE COLLIDES WITH PLAYER
   collideWith(sprite) {
-    // saying that it must collide using the fucnction created befpre
     return this.cacti.some((cactus) => cactus.collideWith(sprite));
   }
 
+  //WHEN RESET TURN THE OBSTACLES ARRAY BACK TO 0
   reset() {
-    this.cacti = []; // when reset turn the cactus into 0 array
+    this.cacti = [];
   }
 }

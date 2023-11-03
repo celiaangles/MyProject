@@ -23,7 +23,7 @@ export default class Score {
 
   incrementScore() {
     this.score++;
-    if (this.score > 2) {
+    if (this.score > 4) {
       document.getElementById("in-game").style.display = "none";
       document.getElementById("intro-game").style.display = "none";
       document.getElementById("winner").style.display = "block";
